@@ -52,7 +52,7 @@ public class Anime : MonoBehaviour
     public void isWalk()
     {
         SSAnimator.SetBool("isIdle", false);
-        SSAnimator.SetBool("isRun", false);
+        SSAnimator.SetBool("isRun", true);
         SSAnimator.SetBool("isWalk", true);
     }
 
