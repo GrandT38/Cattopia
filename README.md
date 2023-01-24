@@ -1,3 +1,2 @@
 # Cattopia
 
-Hello world!
