@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8d88f5587b54d447a677f8a758a21eb, type: 3}
+  m_Name: park cat NPC
+  m_EditorClassIdentifier: 
+  dialoguerName: 
+  dialoguerSentences:
+  - Hello there! I never seen you before
+  - You become a stray cat just recently, arent you?
+  - Well the frist thing a stray cat must do is to find somewhere to live in first
+  - This park has many cardboard boxes thrown out
+  - Maybe you can try collect some cardboard boxes and pick one to be your home for
+    now

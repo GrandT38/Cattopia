@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8d88f5587b54d447a677f8a758a21eb, type: 3}
+  m_Name: tutorial
+  m_EditorClassIdentifier: 
+  dialoguerName: 
+  dialoguerSentences:
+  - Welcome to the game tutorial ! Press "W" to forward
+  - The bottom left  shows the items you need to collect.
+  - Watch out for the enemies ahead!
+  - Enemy will vigilant if you get too close!
+  - If you run, or get too close for too long time. Enemy will come back and chase
+    you
+  - Now that you've collected all the items, head back to the exit! .
+  - Follow the arrow, it will show you the direction !

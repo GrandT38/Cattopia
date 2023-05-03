@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8d88f5587b54d447a677f8a758a21eb, type: 3}
+  m_Name: ResidentialCat
+  m_EditorClassIdentifier: 
+  dialoguerName: 
+  dialoguerSentences:
+  - Meow! Stop!
+  - It's not safe here.
+  - There have lots of bad guys.
+  - They ... hold sticks,hunting  us.
+  - They captured my friend...
+  - Yesterday, we saw a lot of food inside
+  - We're starving
+  - We try to take some
+  - But we failed to stealth.
+  - Those are traps.
+  - Tomy....my friend
+  - He distracted the humans.
+  - He safed me.
+  - I escaped, but he didn't.
+  - I miss he.
+  - So, don't go.
+  - If you are starve too.
+  - Just... steal one of these.
+  - i know you are brave.
+  - Don't take too much.
+  - Don't be found out.

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8d88f5587b54d447a677f8a758a21eb, type: 3}
+  m_Name: market human npc
+  m_EditorClassIdentifier: 
+  dialoguerName: 
+  dialoguerSentences:
+  - ah! youre that cat from this morning!
+  - well it is indeed night now, and i have left you cat foods on the floor
+  - however, my shift is already over and now the market is going to close
+  - before the market closes, Security guards will check the market and surrondings
+    before closing
+  - if they find you, you will be kicked out for sure!
+  - so be careful, grab the cat foods i left behind and dont let the security guards
+    catch you!

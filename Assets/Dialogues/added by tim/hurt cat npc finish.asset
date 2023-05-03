@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8d88f5587b54d447a677f8a758a21eb, type: 3}
+  m_Name: hurt cat npc finish
+  m_EditorClassIdentifier: 
+  dialoguerName: 
+  dialoguerSentences:
+  - ah....... its you again!
+  - not only did you bring me medicine, but you also got a Human Vet to come and
+    treat me!
+  - if it wasnt you, i would be dying on the street now...
+  - Thank you.... you really reminded me of thoese other kind cats i met before in
+    Cattopia
+  - Maybe... you will have a better time living there too if you found the place

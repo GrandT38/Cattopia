@@ -20,7 +20,7 @@ public class WayPointsGroup : MonoBehaviour
             return transform.GetChild(0);       //back to first one
         }
     }
-
+    
     //easy to see
     private void OnDrawGizmos()     //just in scene , cant see in game.
     {

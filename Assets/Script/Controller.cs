@@ -8,18 +8,18 @@ public class Controller : MonoBehaviour
     public int moveMode = 0;
 
 
-    public float  speed = 1f;
+    public float speed = 1f;
     private float angle = 0;
     private float a = 1f;
 
-    private  float objectLocationZ;
-    private  float objectLocationX;
+    private float objectLocationZ;
+    private float objectLocationX;
 
-    private  float positionZ;
-    private  float positionX;
+    private float positionZ;
+    private float positionX;
 
     private float stepCount = 0;
-    public float  patrolDistance = 3;
+    public float patrolDistance = 3;
 
     [SerializeField]
     private WayPointsGroup waypoints;
@@ -35,14 +35,17 @@ public class Controller : MonoBehaviour
     public float playerInRange;
     */
     private GameObject player;
-    
+
     private Animator anim;
 
     public float attackCharge;
     private LevelManager levelManager;
+    private  Detecter detecter;
+    public AudioSource whoosh;
 
     void Start()
     {
+        detecter = transform.GetComponentInChildren<Detecter>();
         levelManager = FindObjectOfType<LevelManager>();
         player = GameObject.FindGameObjectWithTag("Player");
         //Used to record the initial position of this object
@@ -52,7 +55,7 @@ public class Controller : MonoBehaviour
         objectLocationZ = this.transform.localPosition.z;
         objectLocationX = this.transform.localPosition.x;
 
-        if(moveMode == 2)
+        if (moveMode == 2)
         {
             //Set the object position to waypoint in first
             currentTargetPosition = waypoints.ToNextPoint(currentTargetPosition);
@@ -79,8 +82,8 @@ public class Controller : MonoBehaviour
             angle = 90;
 
             moveCircle();
-            transform.position = new Vector3(positionX * patrolDistance+ objectLocationX, this.transform.localPosition.y, positionZ * patrolDistance+ objectLocationZ);
-            transform.LookAt(new Vector3(positionX +objectLocationX, this.transform.localPosition.y, positionZ + objectLocationZ) );
+            transform.position = new Vector3(positionX * patrolDistance + objectLocationX, this.transform.localPosition.y, positionZ * patrolDistance + objectLocationZ);
+            transform.LookAt(new Vector3(positionX + objectLocationX, this.transform.localPosition.y, positionZ + objectLocationZ));
             //make the object look at the center of circle
             transform.Rotate(0, angle, 0);
             // and Then turn around 90(y-axis)  
@@ -94,17 +97,27 @@ public class Controller : MonoBehaviour
             transform.LookAt(currentTargetPosition);
             anim.SetBool("isWalk", true);
         }
-        else if (moveMode ==3)
+        else if (moveMode == 3)
         {
             navMeshAgnet.SetDestination(playerPos.position);
-            anim.SetBool("isAttack", false );
-            anim.SetBool("isWalk", true);
+            anim.SetBool("idle", false);
+            anim.SetBool("isAttack", false);
+            anim.SetBool("isWalk", false);
+            anim.SetBool("isRun", true);
         }
         else if (moveMode == 4)
         {
             navMeshAgnet.SetDestination(playerPos.position);
-            anim.SetBool("isWalk", false);
+            anim.SetBool("idle", false);
+            anim.SetBool("isRun", false);
             anim.SetBool("isAttack", true);
+        }
+        else if (moveMode == 5)
+        {
+            anim.SetBool("isAttack", false);
+            anim.SetBool("isRun", false);
+            anim.SetBool("isWalk", false);
+            anim.SetBool("idle", true);
         }
     }
 
@@ -122,13 +135,13 @@ public class Controller : MonoBehaviour
             }
 
         }
-        else if(stepCount == 1)     //turn direction to left
+        else if (stepCount == 1)     //turn direction to left
         {
             angle -= 90;
             transform.Rotate(0, angle, 0);
             stepCount = 2;
         }
-        else if(stepCount == 2)
+        else if (stepCount == 2)
         {
             positionX -= speed * Time.deltaTime;
             if (positionX <= objectLocationX - patrolDistance)
@@ -136,7 +149,7 @@ public class Controller : MonoBehaviour
                 stepCount = 3;
             }
         }
-        else if(stepCount == 3)     
+        else if (stepCount == 3)
         {
             transform.Rotate(0, angle, 0);
             stepCount = 4;
@@ -144,12 +157,12 @@ public class Controller : MonoBehaviour
         else if (stepCount == 4)
         {
             positionZ -= speed * Time.deltaTime;
-            if (positionZ <= objectLocationZ )
+            if (positionZ <= objectLocationZ)
             {
                 stepCount = 5;
             }
         }
-        else if (stepCount == 5)        
+        else if (stepCount == 5)
         {
             transform.Rotate(0, angle, 0);
             stepCount = 6;
@@ -157,12 +170,12 @@ public class Controller : MonoBehaviour
         else if (stepCount == 6)
         {
             positionX += speed * Time.deltaTime;
-            if (positionX >= objectLocationX )
+            if (positionX >= objectLocationX)
             {
                 stepCount = 7;
             }
         }
-        else if (stepCount == 7)        
+        else if (stepCount == 7)
         {
             transform.Rotate(0, angle, 0);
             stepCount = 0;
@@ -171,7 +184,7 @@ public class Controller : MonoBehaviour
 
     void moveCircle()
     {
-        a += Time.deltaTime*speed;
+        a += Time.deltaTime * speed;
         angle += Time.deltaTime;
         positionX = Mathf.Cos(a);
         positionZ = Mathf.Sin(a);
@@ -188,7 +201,7 @@ public class Controller : MonoBehaviour
         }
     }
 
-    public  void ChangeTo3()
+    public void ChangeTo3()
     {
         moveMode = 3;
     }
@@ -198,6 +211,9 @@ public class Controller : MonoBehaviour
         if (other.gameObject == player)
         {
             moveMode = 4;
+            detecter.TurnOffDetecter();
+            levelManager.PlayerExposed();
+
         }
     }
 
@@ -205,16 +221,24 @@ public class Controller : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         attackCharge += Time.deltaTime;
-        if (other.gameObject == player && attackCharge >= 2.25f )
+
+        if (other.gameObject == player)
         {
-            AttackPlayer();
+            if(attackCharge >= 0.5f && whoosh != null)
+            {
+                whoosh.Play();
+            }
+            if (attackCharge >= 2.2f)
+            {
+                AttackPlayer();
+            }
         }
-        if(attackCharge >= 2.5)
+        if (attackCharge >= 2.5)
         {
             attackCharge = 0;
         }
 
-        
+
     }
 
 
